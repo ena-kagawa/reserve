@@ -121,11 +121,7 @@
         message: formData.get('message')
       };
 
-      // Google Apps Script Web App URL
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbxyz1234567890abcdefg/exec'; // ←後で差し替え
-
-      // LINE通知用 Webhook
-      const LINE_WEBHOOK_URL = 'https://your-line-webhook-url.com'; // ←後で差し替え
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbz60HeOhdJs07rCN03HkGK4LFoZD6gw0b2_XX0MwT4CCUWELw5f3L5t7cZ_Kbho7Nk/exec';
 
       try {
         await fetch(GAS_URL, {
@@ -133,12 +129,6 @@
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
-        });
-
-        await fetch(LINE_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: `【予約】\n名前: ${data.name}\n時間: ${data.time}\n連絡先: ${data.contact}\n相談内容: ${data.message || 'なし'}` })
         });
 
         alert('予約を受け付けました。画面をそのまま残してお使いください。');
